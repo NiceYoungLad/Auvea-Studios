@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUVEA Studio | AI-Driven Business Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-text">AUVEA</span>
+                <span class="logo-dot"></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#process" class="nav-link">Process</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Get Started</a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-particles" id="particles"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge animate-fade-up">
+                    <span class="badge-dot"></span>
+                    AI-Powered Solutions
+                </div>
+                <h1 class="hero-title animate-fade-up delay-1">
+                    Transform Your Business with
+                    <span class="gradient-text">Intelligent Automation</span>
+                </h1>
+                <p class="hero-subtitle animate-fade-up delay-2">
+                    We design and deploy customized AI-driven systems that reduce operational workload, 
+                    enable 24/7 execution, and support sustainable business growth.
+                </p>
+                <div class="hero-cta animate-fade-up delay-3">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Start Your Journey</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#services" class="btn btn-secondary">Explore Services</a>
+                </div>
+                <div class="hero-stats animate-fade-up delay-4">
+                    <div class="stat">
+                        <span class="stat-number" data-count="70">0</span><span class="stat-suffix">%</span>
+                        <span class="stat-label">Workload Reduction</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="24">0</span><span class="stat-suffix">/7</span>
+                        <span class="stat-label">System Uptime</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="100">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Workflows Automated</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual animate-fade-left delay-2">
+                <div class="hero-card">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="card-title">AI Operations Dashboard</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="metric-row">
+                                <div class="metric">
+                                    <span class="metric-label">Tasks Automated</span>
+                                    <span class="metric-value">1,247</span>
+                                    <div class="metric-bar"><div class="metric-fill" style="width: 85%"></div></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <div class="metric">
+                                    <span class="metric-label">Time Saved</span>
+                                    <span class="metric-value">312 hrs</span>
+                                    <div class="metric-bar"><div class="metric-fill" style="width: 72%"></div></div>
+                                </div>
+                            </div>
+                            <div class="metric-row">
+                                <div class="metric">
+                                    <span class="metric-label">Cost Reduction</span>
+                                    <span class="metric-value">$48,500</span>
+                                    <div class="metric-bar"><div class="metric-fill" style="width: 90%"></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <div class="scroll-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag animate-on-scroll">About Us</span>
+                <h2 class="section-title animate-on-scroll">
+                    Pioneering the Future of
+                    <span class="gradient-text">Business Intelligence</span>
+                </h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-content animate-on-scroll">
+                    <p class="about-lead">
+                        AUVEA partners with small and medium-sized businesses to understand how their operations work, 
+                        identify inefficiencies, and implement intelligent systems that reduce manual effort.
+                    </p>
+                    <p class="about-text">
+                        Many businesses rely heavily on manual, repetitive processes that limit growth and increase costs. 
+                        These workflows create bottlenecks, slow response times, and make scaling difficult without adding headcount.
+                    </p>
+                    <p class="about-text">
+                        Our mission is to bridge the gap between human expertise and artificial intelligence, 
+                        creating seamless systems that work around the clock to drive your success.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22 4 12 14.01 9 11.01"/>
+                                </svg>
+                            </div>
+                            <span>Proven Track Record</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <span>24/7 System Operation</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <span>Enterprise Security</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual animate-on-scroll">
+                    <div class="visual-card">
+                        <div class="visual-inner">
+                            <div class="orbit-ring ring-1"></div>
+                            <div class="orbit-ring ring-2"></div>
+                            <div class="orbit-ring ring-3"></div>
+                            <div class="center-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                    <path d="M2 17l10 5 10-5"/>
+                                    <path d="M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                            <div class="orbit-dot dot-1"></div>
+                            <div class="orbit-dot dot-2"></div>
+                            <div class="orbit-dot dot-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag animate-on-scroll">Our Services</span>
+                <h2 class="section-title animate-on-scroll">
+                    Comprehensive AI Solutions for
+                    <span class="gradient-text">Modern Business</span>
+                </h2>
+                <p class="section-subtitle animate-on-scroll">
+                    We deliver end-to-end AI implementation services designed to transform your operations
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Automated Workflow Execution</h3>
+                    <p class="service-desc">
+                        Streamline your operations with intelligent automation that handles repetitive tasks 
+                        with precision and reliability, freeing your team for strategic work.
+                    </p>
+                    <ul class="service-features">
+                        <li>Process automation</li>
+                        <li>Task scheduling</li>
+                        <li>Error handling</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Intelligent Task Routing</h3>
+                    <p class="service-desc">
+                        Smart distribution of tasks based on priority, complexity, and resource availability, 
+                        ensuring optimal efficiency across your organization.
+                    </p>
+                    <ul class="service-features">
+                        <li>Priority management</li>
+                        <li>Resource optimization</li>
+                        <li>Load balancing</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M18 20V10"/>
+                            <path d="M12 20V4"/>
+                            <path d="M6 20v-6"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">System Integrations</h3>
+                    <p class="service-desc">
+                        Seamlessly connect your existing tools and platforms - CRM, email, databases, 
+                        and APIs - into a unified, intelligent ecosystem.
+                    </p>
+                    <ul class="service-features">
+                        <li>CRM integration</li>
+                        <li>API connectivity</li>
+                        <li>Data synchronization</li>
+                    </ul>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Centralized Monitoring</h3>
+                    <p class="service-desc">
+                        Real-time visibility into all automated processes with comprehensive dashboards, 
+                        alerts, and control mechanisms at your fingertips.
+                    </p>
+                    <ul class="service-features">
+                        <li>Real-time dashboards</li>
+                        <li>Alert systems</li>
+                        <li>Performance analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag animate-on-scroll">Our Process</span>
+                <h2 class="section-title animate-on-scroll">
+                    A Proven Path to
+                    <span class="gradient-text">Transformation</span>
+                </h2>
+                <p class="section-subtitle animate-on-scroll">
+                    Our structured approach ensures successful implementation and lasting results
+                </p>
+            </div>
+            <div class="process-timeline">
+                <div class="timeline-line"></div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Discovery & Analysis</h3>
+                        <p class="step-desc">
+                            Deep dive into your current operations, workflows, and pain points to identify 
+                            opportunities for AI-driven optimization.
+                        </p>
+                    </div>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">System Design</h3>
+                        <p class="step-desc">
+                            Architect a customized solution tailored to your specific needs, ensuring 
+                            seamless integration with existing systems.
+                        </p>
+                    </div>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Development & Integration</h3>
+                        <p class="step-desc">
+                            Build and connect all components of your AI system, with rigorous testing 
+                            at every stage of development.
+                        </p>
+                    </div>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Testing & Deployment</h3>
+                        <p class="step-desc">
+                            Comprehensive validation followed by phased rollout to ensure smooth 
+                            transition and minimal disruption.
+                        </p>
+                    </div>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Optimization & Scaling</h3>
+                        <p class="step-desc">
+                            Continuous monitoring, refinement, and expansion of capabilities as your 
+                            business grows and evolves.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">
+                        Ready to Transform
+                        <span class="gradient-text">Your Business?</span>
+                    </h2>
+                    <p class="contact-desc">
+                        Let's discuss how AUVEA can help you reduce operational workload and achieve 
+                        sustainable growth through intelligent automation.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <a href="mailto:auveastudios@gmail.com" class="contact-value">auveastudios@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Location</span>
+                                <span class="contact-value">Remote-First, Worldwide</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper animate-on-scroll">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company Name</label>
+                            <input type="text" id="company" name="company" placeholder="Your Company">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">How can we help?</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Send Message</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">
+                        <span class="logo-text">AUVEA</span>
+                        <span class="logo-dot"></span>
+                    </a>
+                    <p class="footer-tagline">AI-Driven Business Optimization</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#process">Process</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <rect x="2" y="9" width="4" height="12"/>
+                            <circle cx="4" cy="4" r="2"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AUVEA Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
