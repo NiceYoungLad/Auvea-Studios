@@ -211,7 +211,7 @@ function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
     
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         // Get form data
@@ -224,19 +224,33 @@ function initContactForm() {
             return;
         }
         
-        // Simulate form submission
+        // Update button state
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<span>Sending...</span>';
         submitBtn.disabled = true;
         
-        // Simulate API call
-        setTimeout(() => {
-            showNotification('Thank you! Your message has been sent successfully.', 'success');
-            form.reset();
+        try {
+            // Submit to Web3Forms
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                showNotification('Thank you! Your message has been sent successfully.', 'success');
+                form.reset();
+            } else {
+                showNotification('Something went wrong. Please try again.', 'error');
+            }
+        } catch (error) {
+            showNotification('Network error. Please try again later.', 'error');
+        } finally {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
-        }, 1500);
+        }
     });
 }
 
