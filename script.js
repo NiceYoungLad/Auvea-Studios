@@ -243,10 +243,15 @@ function initContactForm() {
             });
             
             // Send auto-reply to the user
-            await emailjs.send('service_9prb5cv', 'template_r0spzwa', {
-                to_name: data.name,
-                to_email: data.email
-            });
+            try {
+                await emailjs.send('service_9prb5cv', 'template_r0spzwa', {
+                    to_name: data.name,
+                    to_email: data.email
+                });
+            } catch (replyError) {
+                console.log('Auto-reply failed:', replyError);
+                // Continue even if auto-reply fails
+            }
             
             showNotification('Thank you! Your message has been sent successfully.', 'success');
             form.reset();
