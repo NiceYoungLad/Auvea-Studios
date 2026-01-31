@@ -206,10 +206,13 @@ function initMobileMenu() {
     });
 }
 
-// ===== Contact Form =====
+// ===== Contact Form with EmailJS =====
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
+    
+    // Initialize EmailJS with your public key
+    emailjs.init('hJQUnQelwghZGqAed');
     
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -231,22 +234,25 @@ function initContactForm() {
         submitBtn.disabled = true;
         
         try {
-            // Submit to Web3Forms
-            const response = await fetch('https://api.web3forms.com/submit', {
-                method: 'POST',
-                body: formData
+            // Send notification email to you (auveastudios@gmail.com)
+            await emailjs.send('service_9prb5cv', 'template_yym3h61', {
+                from_name: data.name,
+                from_email: data.email,
+                company: data.company || 'Not provided',
+                message: data.message
             });
             
-            const result = await response.json();
+            // Send auto-reply to the user
+            await emailjs.send('service_9prb5cv', 'template_r0spzwa', {
+                to_name: data.name,
+                to_email: data.email
+            });
             
-            if (result.success) {
-                showNotification('Thank you! Your message has been sent successfully.', 'success');
-                form.reset();
-            } else {
-                showNotification('Something went wrong. Please try again.', 'error');
-            }
+            showNotification('Thank you! Your message has been sent successfully.', 'success');
+            form.reset();
         } catch (error) {
-            showNotification('Network error. Please try again later.', 'error');
+            console.error('EmailJS error:', error);
+            showNotification('Something went wrong. Please try again.', 'error');
         } finally {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;

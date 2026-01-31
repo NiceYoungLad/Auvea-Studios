@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -405,30 +407,7 @@
                     </div>
                 </div>
                 <div class="contact-form-wrapper animate-on-scroll">
-                    <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-                        <!-- Web3Forms Access Key -->
-                        <input type="hidden" name="access_key" value="3b509c27-f860-48f0-9da6-e4b71fd8f2e5">
-                        <input type="hidden" name="subject" value="New Contact Form Submission - AUVEA Studio">
-                        <input type="hidden" name="from_name" value="AUVEA Studio">
-                        
-                        <!-- Auto-Reply Settings -->
-                        <input type="hidden" name="replyto" value="auveastudios@gmail.com">
-                        <input type="hidden" name="autoresponse" value="true">
-                        <input type="hidden" name="autoresponse_from" value="AUVEA Studio">
-                        <input type="hidden" name="autoresponse_subject" value="Thank you for contacting AUVEA Studio">
-                        <input type="hidden" name="autoresponse_message" value="Hi there,
-
-Thank you for reaching out to AUVEA Studio! We have received your message and appreciate your interest in our AI-driven solutions.
-
-Our team will review your inquiry and get back to you within 24-48 hours.
-
-In the meantime, feel free to explore our website to learn more about how we can help transform your business operations.
-
-Best regards,
-The AUVEA Studio Team
-auveastudios@gmail.com">
-                        
-                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" placeholder="John Doe" required>
