@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     initMobileMenu();
     initContactForm();
+    initScrollProgress();
+    initParallax();
+    initMagneticButtons();
+    initTextReveal();
+    initBlobAnimation();
 });
 
 // ===== Navbar Scroll Effect =====
@@ -450,3 +455,264 @@ document.querySelectorAll('.service-card').forEach(card => {
         card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
     });
 });
+
+// ===== Scroll Progress Indicator =====
+function initScrollProgress() {
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress';
+    document.body.appendChild(progressBar);
+    
+    window.addEventListener('scroll', () => {
+        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        progressBar.style.width = `${scrolled}%`;
+    });
+}
+
+// ===== Parallax Effect =====
+function initParallax() {
+    const parallaxElements = document.querySelectorAll('[data-parallax]');
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        
+        parallaxElements.forEach(el => {
+            const speed = el.dataset.parallax || 0.5;
+            const yPos = -(scrolled * speed);
+            el.style.transform = `translateY(${yPos}px)`;
+        });
+        
+        // Parallax for hero section
+        const hero = document.querySelector('.hero');
+        if (hero && scrolled < window.innerHeight) {
+            const heroContent = hero.querySelector('.hero-content');
+            const heroVisual = hero.querySelector('.hero-visual');
+            
+            if (heroContent) {
+                heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroContent.style.opacity = 1 - (scrolled / 700);
+            }
+            if (heroVisual) {
+                heroVisual.style.transform = `translateY(${scrolled * 0.15}px)`;
+            }
+        }
+    });
+}
+
+// ===== Magnetic Button Effect =====
+function initMagneticButtons() {
+    const buttons = document.querySelectorAll('.btn-primary, .nav-cta');
+    
+    buttons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0, 0)';
+        });
+    });
+}
+
+// ===== Text Reveal Animation =====
+function initTextReveal() {
+    const textElements = document.querySelectorAll('.text-reveal');
+    
+    textElements.forEach(el => {
+        const text = el.textContent;
+        el.innerHTML = `<span>${text}</span>`;
+    });
+}
+
+// ===== Animated Background Blob =====
+function initBlobAnimation() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    // Create blob elements
+    const blob1 = document.createElement('div');
+    blob1.className = 'blob';
+    blob1.style.cssText = `
+        position: absolute;
+        top: 10%;
+        right: 10%;
+        width: 600px;
+        height: 600px;
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(6, 182, 212, 0.08) 100%);
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        filter: blur(60px);
+        animation: morphBlob 20s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+    `;
+    
+    const blob2 = document.createElement('div');
+    blob2.className = 'blob';
+    blob2.style.cssText = `
+        position: absolute;
+        bottom: 20%;
+        left: 5%;
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(34, 211, 238, 0.06) 100%);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        filter: blur(50px);
+        animation: morphBlob 25s ease-in-out infinite reverse;
+        pointer-events: none;
+        z-index: 0;
+    `;
+    
+    hero.style.position = 'relative';
+    hero.appendChild(blob1);
+    hero.appendChild(blob2);
+}
+
+// ===== Enhanced Scroll Animations =====
+function initEnhancedScrollAnimations() {
+    const animateElements = document.querySelectorAll('.animate-slide-up, .animate-slide-left, .animate-slide-right, .animate-scale, .animate-rotate');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    animateElements.forEach(el => observer.observe(el));
+}
+
+// Initialize enhanced scroll animations
+document.addEventListener('DOMContentLoaded', initEnhancedScrollAnimations);
+
+// ===== Smooth Counter Animation with Easing =====
+function animateValue(element, start, end, duration) {
+    const range = end - start;
+    const startTime = performance.now();
+    
+    function easeOutQuart(x) {
+        return 1 - Math.pow(1 - x, 4);
+    }
+    
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        const current = Math.floor(start + (range * easedProgress));
+        
+        element.textContent = current;
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+    
+    requestAnimationFrame(update);
+}
+
+// ===== Mouse Trail Effect =====
+function initMouseTrail() {
+    const trail = [];
+    const trailLength = 10;
+    
+    for (let i = 0; i < trailLength; i++) {
+        const dot = document.createElement('div');
+        dot.style.cssText = `
+            position: fixed;
+            width: ${10 - i}px;
+            height: ${10 - i}px;
+            background: rgba(14, 165, 233, ${0.5 - i * 0.04});
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.1s ease;
+        `;
+        document.body.appendChild(dot);
+        trail.push(dot);
+    }
+    
+    let mouseX = 0, mouseY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    function updateTrail() {
+        let x = mouseX;
+        let y = mouseY;
+        
+        trail.forEach((dot, index) => {
+            const nextDot = trail[index + 1] || trail[0];
+            
+            dot.style.left = x + 'px';
+            dot.style.top = y + 'px';
+            
+            x += (parseFloat(nextDot.style.left) - x) * 0.3;
+            y += (parseFloat(nextDot.style.top) - y) * 0.3;
+        });
+        
+        requestAnimationFrame(updateTrail);
+    }
+    
+    updateTrail();
+}
+
+// Initialize mouse trail on desktop
+if (window.matchMedia('(min-width: 1024px)').matches && window.matchMedia('(hover: hover)').matches) {
+    // Uncomment below to enable mouse trail (can be resource intensive)
+    // initMouseTrail();
+}
+
+// ===== Intersection Observer for Staggered Animations =====
+const staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const children = entry.target.children;
+            Array.from(children).forEach((child, index) => {
+                child.style.transitionDelay = `${index * 0.1}s`;
+                child.classList.add('visible');
+            });
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.stagger-children').forEach(el => staggerObserver.observe(el));
+
+// ===== Update cursor glow color =====
+function initCursorGlow() {
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    glow.style.cssText = `
+        position: fixed;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        transition: opacity 0.3s;
+    `;
+    document.body.appendChild(glow);
+    
+    document.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+    });
+    
+    document.addEventListener('mouseleave', () => {
+        glow.style.opacity = '0';
+    });
+    
+    document.addEventListener('mouseenter', () => {
+        glow.style.opacity = '1';
+    });
+}
