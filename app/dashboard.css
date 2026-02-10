@@ -1,0 +1,192 @@
+:root {
+  --bg: #0b0f14;
+  --panel: #111827;
+  --panel-2: #0f172a;
+  --accent: #7dd3fc;
+  --accent-2: #38bdf8;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --border: #1f2937;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --danger: #f87171;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  background: linear-gradient(180deg, #0b1220, #0b0f14);
+  border-right: 1px solid var(--border);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.app-brand {
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+}
+
+.app-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-nav a {
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--muted);
+  transition: all 0.2s ease;
+}
+
+.app-nav a.active,
+.app-nav a:hover {
+  color: var(--text);
+  background: #0f1c2f;
+}
+
+.app-content {
+  padding: 32px 40px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.app-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.app-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.app-grid.cols-2 {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.app-grid.cols-3 {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.app-table th,
+.app-table td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.app-button {
+  background: var(--accent);
+  color: #0b0f14;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.app-button.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.app-button.danger {
+  background: var(--danger);
+  color: #0b0f14;
+}
+
+.app-input,
+.app-select,
+.app-textarea {
+  width: 100%;
+  background: #0b1220;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.app-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.app-form {
+  display: grid;
+  gap: 12px;
+}
+
+.app-muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.app-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: #0f1c2f;
+  color: var(--accent);
+}
+
+.app-loading {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  color: var(--muted);
+}
+
+.auth-card {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 28px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.auth-card h1 {
+  margin-top: 0;
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .app-sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
