@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { supabase } from '@/lib/supabaseClient';
+import { getSupabaseClient } from '@/lib/supabaseClient';
 import AuthCard from './AuthCard';
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
@@ -12,6 +12,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    const supabase = getSupabaseClient();
     supabase.auth.getSession().then(({ data }) => {
       setHasSession(!!data.session);
       setReady(true);
@@ -60,7 +61,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <button
           className="app-button secondary"
           type="button"
-          onClick={() => supabase.auth.signOut()}
+          onClick={() => getSupabaseClient().auth.signOut()}
         >
           Sign out
         </button>
