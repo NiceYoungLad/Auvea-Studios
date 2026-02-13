@@ -5,11 +5,14 @@ export default function Head() {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap"
         rel="stylesheet"
       />
-      <link rel="stylesheet" href="/styles.css" />
-      <title>AUVEA Studio | AI-Driven Business Optimization</title>
+      <title>AUVEA | Resume Job Assistant</title>
+      <meta
+        name="description"
+        content="Upload your resume, track fresh jobs every 24 hours, and use assisted apply with review."
+      />
     </>
   );
 }
