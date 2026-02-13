@@ -9,25 +9,45 @@ import AuthCard from './AuthCard';
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [hasSession, setHasSession] = useState(false);
+  const [configError, setConfigError] = useState('');
   const pathname = usePathname();
 
   useEffect(() => {
-    const supabase = getSupabaseClient();
-    supabase.auth.getSession().then(({ data }) => {
-      setHasSession(!!data.session);
+    try {
+      const supabase = getSupabaseClient();
+      supabase.auth.getSession().then(({ data }) => {
+        setHasSession(!!data.session);
+        setReady(true);
+      });
+      const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+        setHasSession(!!session);
+        setReady(true);
+      });
+      return () => {
+        authListener.subscription.unsubscribe();
+      };
+    } catch (err: any) {
+      setConfigError(err.message || 'Supabase is not configured.');
       setReady(true);
-    });
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setHasSession(!!session);
-      setReady(true);
-    });
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
+      return () => {};
+    }
   }, []);
 
   if (!ready) {
     return <div className="app-loading">Loading workspace...</div>;
+  }
+
+  if (configError) {
+    return (
+      <div className="auth-card">
+        <h1>Configuration required</h1>
+        <p className="app-muted">{configError}</p>
+        <p className="app-muted">
+          Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in Vercel
+          Environment Variables, then redeploy.
+        </p>
+      </div>
+    );
   }
 
   if (!hasSession) {
@@ -61,7 +81,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <button
           className="app-button secondary"
           type="button"
-          onClick={() => getSupabaseClient().auth.signOut()}
+          onClick={() => {
+            try {
+              getSupabaseClient().auth.signOut();
+            } catch (err: any) {
+              setConfigError(err.message || 'Supabase is not configured.');
+            }
+          }}
         >
           Sign out
         </button>
