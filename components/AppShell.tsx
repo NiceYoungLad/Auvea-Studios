@@ -43,8 +43,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <h1>Configuration required</h1>
         <p className="app-muted">{configError}</p>
         <p className="app-muted">
-          Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in Vercel
-          Environment Variables, then redeploy.
+          Add `NEXT_PUBLIC_SUPABASE_URL` and either `NEXT_PUBLIC_SUPABASE_ANON_KEY` or
+          `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` in Vercel Environment Variables, then redeploy.
         </p>
       </div>
     );
