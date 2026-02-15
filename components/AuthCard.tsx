@@ -17,7 +17,13 @@ export default function AuthCard() {
     try {
       const supabase = getSupabaseClient();
       if (mode === 'signup') {
-        const { error } = await supabase.auth.signUp({ email, password });
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/app`,
+          },
+        });
         if (error) throw error;
         setMessage('Check your email to confirm your account.');
       } else {
