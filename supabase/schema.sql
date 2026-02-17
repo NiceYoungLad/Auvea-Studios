@@ -218,3 +218,87 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
 after insert on auth.users
 for each row execute procedure public.handle_new_user();
+
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_policies
+    where schemaname = 'storage'
+      and tablename = 'objects'
+      and policyname = 'Resume files insert own folder'
+  ) then
+    create policy "Resume files insert own folder"
+    on storage.objects
+    for insert
+    to authenticated
+    with check (
+      bucket_id = 'resumes'
+      and (storage.foldername(name))[1] = auth.uid()::text
+    );
+  end if;
+end $$;
+
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_policies
+    where schemaname = 'storage'
+      and tablename = 'objects'
+      and policyname = 'Resume files read own folder'
+  ) then
+    create policy "Resume files read own folder"
+    on storage.objects
+    for select
+    to authenticated
+    using (
+      bucket_id = 'resumes'
+      and (storage.foldername(name))[1] = auth.uid()::text
+    );
+  end if;
+end $$;
+
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_policies
+    where schemaname = 'storage'
+      and tablename = 'objects'
+      and policyname = 'Resume files update own folder'
+  ) then
+    create policy "Resume files update own folder"
+    on storage.objects
+    for update
+    to authenticated
+    using (
+      bucket_id = 'resumes'
+      and (storage.foldername(name))[1] = auth.uid()::text
+    )
+    with check (
+      bucket_id = 'resumes'
+      and (storage.foldername(name))[1] = auth.uid()::text
+    );
+  end if;
+end $$;
+
+do $$
+begin
+  if not exists (
+    select 1
+    from pg_policies
+    where schemaname = 'storage'
+      and tablename = 'objects'
+      and policyname = 'Resume files delete own folder'
+  ) then
+    create policy "Resume files delete own folder"
+    on storage.objects
+    for delete
+    to authenticated
+    using (
+      bucket_id = 'resumes'
+      and (storage.foldername(name))[1] = auth.uid()::text
+    );
+  end if;
+end $$;

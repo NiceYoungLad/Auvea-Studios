@@ -17,12 +17,20 @@ export default function JobsPage() {
   const [filterText, setFilterText] = useState('');
   const [status, setStatus] = useState('all');
   const [message, setMessage] = useState('');
+  const [discovering, setDiscovering] = useState(false);
+
+  const loadJobs = async () => {
+    try {
+      const response = await authedFetch('/api/jobs');
+      const data = await response.json();
+      setJobs(data.jobs || []);
+    } catch (error) {
+      setJobs([]);
+    }
+  };
 
   useEffect(() => {
-    authedFetch('/api/jobs')
-      .then((res) => res.json())
-      .then((data) => setJobs(data.jobs || []))
-      .catch(() => setJobs([]));
+    loadJobs();
   }, []);
 
   const filtered = useMemo(() => {
@@ -35,14 +43,33 @@ export default function JobsPage() {
     });
   }, [jobs, filterText, status]);
 
+  const handleDiscoverJobs = async () => {
+    setDiscovering(true);
+    setMessage('');
+    try {
+      const response = await authedFetch('/api/jobs/discover', { method: 'POST' });
+      const data = await response.json();
+      if (!response.ok) {
+        setMessage(data.error || 'Unable to discover jobs right now.');
+        return;
+      }
+      setMessage(`Web search complete. Found ${data.total_found || 0} jobs.`);
+      await loadJobs();
+    } catch (error) {
+      setMessage('Unable to discover jobs right now.');
+    } finally {
+      setDiscovering(false);
+    }
+  };
+
   const handleApply = async (jobId: string) => {
     setMessage('');
-    const res = await authedFetch('/api/applications', {
+    const response = await authedFetch('/api/applications', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ job_id: jobId }),
     });
-    if (!res.ok) {
+    if (!response.ok) {
       setMessage('Unable to queue application.');
       return;
     }
@@ -55,11 +82,19 @@ export default function JobsPage() {
         <div className="app-grid cols-3">
           <label>
             <div className="app-muted">Search</div>
-            <input className="app-input" value={filterText} onChange={(e) => setFilterText(e.target.value)} />
+            <input
+              className="app-input"
+              value={filterText}
+              onChange={(event) => setFilterText(event.target.value)}
+            />
           </label>
           <label>
             <div className="app-muted">Status</div>
-            <select className="app-select" value={status} onChange={(e) => setStatus(e.target.value)}>
+            <select
+              className="app-select"
+              value={status}
+              onChange={(event) => setStatus(event.target.value)}
+            >
               <option value="all">All</option>
               <option value="new">New</option>
               <option value="seen">Seen</option>
@@ -71,8 +106,14 @@ export default function JobsPage() {
             {filtered.length} jobs
           </div>
         </div>
+        <div style={{ marginTop: 12 }}>
+          <button className="app-button" onClick={handleDiscoverJobs} disabled={discovering}>
+            {discovering ? 'Searching jobs...' : 'Find Jobs From Resume'}
+          </button>
+        </div>
         {message && <p className="app-muted">{message}</p>}
       </div>
+
       <div className="app-card">
         <table className="app-table">
           <thead>
@@ -93,7 +134,7 @@ export default function JobsPage() {
                   </a>
                 </td>
                 <td>{job.company?.name || 'Unknown'}</td>
-                <td>{job.location || '—'}</td>
+                <td>{job.location || '-'}</td>
                 <td>{job.status}</td>
                 <td>
                   <button className="app-button secondary" onClick={() => handleApply(job.id)}>
@@ -102,6 +143,13 @@ export default function JobsPage() {
                 </td>
               </tr>
             ))}
+            {filtered.length === 0 && (
+              <tr>
+                <td colSpan={5} className="app-muted">
+                  No jobs yet. Click "Find Jobs From Resume" to search and list jobs.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
